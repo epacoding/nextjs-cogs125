@@ -1,5 +1,5 @@
 {
-  "homepage": "https://astievan.github.io/COGS-125-Project/",
+  "homepage": "https://epacoding.github.io/nextjs-cogs125/",
     "private": true,
     "scripts": {
       "dev": "next dev",
