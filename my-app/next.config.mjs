@@ -9,7 +9,8 @@ const nextConfig = {
   },
   assetPrefix: isProd ? '/my-app/' : '',
   basePath: isProd ? '/my-app' : '',
-  output: 'export'
+  output: 'export',
+  trailingSlash: true
 };
 
 export default nextConfig;
