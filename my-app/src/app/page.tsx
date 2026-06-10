@@ -1,83 +1,178 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
-  const targetRef = useRef(null);
+  {/* Initialize the slide state */}
+  const [slide, setSlide] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlide((prev) => (prev + 1) % 3);
+    }, 5000);
 
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", "-300%"]
-  );
+    return () => clearInterval(interval);
+  }, []);
+
+  const linkStyle = {
+    textDecoration: "none",
+    fontSize: "16px",
+    fontWeight: 500,
+    color: "white",
+  };
 
   return (
-    <main>
-      {/* Intro Section */}
-      <section className="h-screen flex items-center justify-center">
-        <div>
-          <h1 className="text-6xl font-bold">
-            Evan Asti
-          </h1>
-
-          <p className="mt-4 text-xl">
-            COGS 125 Advanced Interaction Design Portfolio
-          </p>
-        </div>
-      </section>
-
-      {/* Horizontal Scroll Gallery */}
+    <main style={{ fontFamily: "system-ui, sans-serif" }}>
+      
+      {/* Intro */}
       <section
-        ref={targetRef}
-        className="relative h-[400vh]"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
       >
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <motion.div
-            style={{ x }}
-            className="flex h-full"
+        <h1 style={{ fontSize: "48px", fontWeight: 700 }}>
+          Evan Asti
+        </h1>
+        <p style={{ fontSize: "24px", fontWeight: 400 }}>
+          COGS 125 Portfolio
+        </p>
+      </section>
+
+      <section
+        style={{
+          height: "100vh",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "80px",
+            zIndex: 2,
+            pointerEvents: "none",
+            background: "linear-gradient(to bottom, white, transparent)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 10,
+            textAlign: "center",
+          }}
+        ></div>
+        <motion.div
+          animate={{
+            x: `-${slide * 100}vw`,
+            y: "-60px"
+          }}
+          transition={{
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          style={{
+            display: "flex",
+            height: "100%",
+          }}
+        >
+        {/* Slide 1 */}
+          <div
+            style={{
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexShrink: 0,
+            }}
           >
-            <div className="relative w-screen h-screen flex-shrink-0">
-              <Image
-                src="/images/Base.png"
-                alt="Base"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <div className="relative w-screen h-screen flex-shrink-0">
-              <Image
-                src="/images/Base_Modified.png"
-                alt="Base_Modified"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <div className="relative w-screen h-screen flex-shrink-0">
-              <Image
-                src="/images/Region_Example.png"
-                alt="Region_Example"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </motion.div>
-        </div>
+            <Image
+              src="/screenshots/Base.png"
+              alt="Slide 1"
+              width={1152}
+              height={864}
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+          {/* Slide 2 */}
+          <div
+            style={{
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexShrink: 0,
+            }}
+          >
+            <Image
+              src="/screenshots/Base_Modified.png"
+              alt="Slide 2"
+              width={1152}
+              height={864}
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+          {/* Slide 3 */}
+          <div
+            style={{
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexShrink: 0,
+            }}
+          >
+            <Image
+              src="/screenshots/Region_Example.png"
+              alt="Slide 3"
+              width={1152}
+              height={864}
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+        </motion.div>
       </section>
+      {/* NAVIGATION (now page-based) */}
+      <nav
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "70px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+          borderTop: "1px solid #ddd",
+          backgroundColor: "black",
+          zIndex: 1000,
+        }}
+      >
+        <Link href="/inspiration" style={linkStyle}>
+          Inspiration
+        </Link>
 
-      {/* Footer Section */}
-      <section className="h-screen flex items-center justify-center">
-        <h2 className="text-4xl">
-          Seeing if it runs
-        </h2>
-      </section>
+        <Link href="/design-evolution" style={linkStyle}>
+          Design Evolution
+        </Link>
+
+        <Link href="/reflections" style={linkStyle}>
+          Reflections
+        </Link>
+      </nav>
     </main>
   );
 }
