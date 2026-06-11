@@ -1,8 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Page() {
@@ -24,27 +22,48 @@ export default function Page() {
 
   const linkStyle = {
     textDecoration: "none",
-    fontSize: "16px",
+    fontSize: "18px",
     fontWeight: 500,
     color: "white",
+    padding: "12px 24px",
+    border: "1px solid rgba(255,255,255,0.2)",
+    borderRadius: "10px",
   };
 
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif" }}>
-      
+    <main
+      style={{
+        fontFamily: "system-ui, sans-serif",
+        minHeight: "100vh",
+      }}
+    >
       {/* Intro */}
       <section
         style={{
+          minHeight: "50vh",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
           flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
         }}
       >
-        <h1 style={{ fontSize: "48px", fontWeight: 700 }}>
+        <h1
+          style={{
+            fontSize: "48px",
+            fontWeight: 700,
+            marginBottom: "12px",
+          }}
+        >
           Evan Asti
         </h1>
-        <p style={{ fontSize: "24px", fontWeight: 400 }}>
+
+        <p
+          style={{
+            fontSize: "24px",
+            opacity: 0.8,
+          }}
+        >
           COGS 125 Portfolio
         </p>
       </section>
@@ -53,19 +72,20 @@ export default function Page() {
       <section
         style={{
           height: "100vh",
-          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           position: "relative",
+          overflow: "hidden",
         }}
       >
-        {/* Left Arrow */}
+        {/* Left Button */}
         <button
           onClick={prevSlide}
           style={{
             position: "absolute",
             left: "20px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            zIndex: 20,
+            zIndex: 10,
             fontSize: "30px",
             background: "rgba(0,0,0,0.4)",
             color: "white",
@@ -79,15 +99,13 @@ export default function Page() {
           ‹
         </button>
 
-        {/* Right Arrow */}
+        {/* Right Button */}
         <button
           onClick={nextSlide}
           style={{
             position: "absolute",
             right: "20px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            zIndex: 20,
+            zIndex: 10,
             fontSize: "30px",
             background: "rgba(0,0,0,0.4)",
             color: "white",
@@ -101,58 +119,25 @@ export default function Page() {
           ›
         </button>
 
-        <motion.div
-          animate={{
-            x: `-${slide * 100}%`,
-          }}
-          transition={{
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
+        <img
+          src={images[slide]}
+          alt={`Slide ${slide + 1}`}
           style={{
-            display: "flex",
-            height: "100%",
+            maxWidth: "90%",
+            maxHeight: "80vh",
+            objectFit: "contain",
           }}
-        >
-          {images.map((src, i) => (
-            <div
-              key={i}
-              style={{
-                width: "100vw",
-                height: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexShrink: 0,
-              }}
-            >
-              <Image
-                src={src}
-                alt={`Slide ${i + 1}`}
-                width={1152}
-                height={864}
-                style={{ objectFit: "contain" }}
-                priority={i === 0}
-              />
-            </div>
-          ))}
-        </motion.div>
+        />
       </section>
 
-      {/* NAVIGATION */}
-      <nav
+      {/* Navigation */}
+      <section
         style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          height: "70px",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-          borderTop: "1px solid #ddd",
-          backgroundColor: "black",
-          zIndex: 1000,
+          justifyContent: "center",
+          gap: "20px",
+          padding: "60px 20px",
+          flexWrap: "wrap",
         }}
       >
         <Link href="/inspiration" style={linkStyle}>
@@ -166,7 +151,7 @@ export default function Page() {
         <Link href="/reflections" style={linkStyle}>
           Reflections
         </Link>
-      </nav>
+      </section>
     </main>
   );
 }
