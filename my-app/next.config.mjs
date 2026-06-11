@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-const basePath = "/nextjs-cogs125";
+const repo = "/nextjs-cogs125";
 
 const nextConfig = {
   output: "export",
-  basePath,
-  assetPrefix: basePath,
+  basePath: repo,
   images: {
     unoptimized: true,
   },

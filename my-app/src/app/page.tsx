@@ -12,10 +12,10 @@ export default function Page() {
   const base = process.env.NODE_ENV === "production" ? "/nextjs-cogs125" : "";
 
   const images = [
-    "/screenshots/Base.png",
-    "/screenshots/Base_Modified.png",
-    "/screenshots/Region_Example.png"
-  ];
+  `${base}/screenshots/Base.png`,
+  `${base}/screenshots/Base_Modified.png`,
+  `${base}/screenshots/Region_Example.png`
+];
 
   const nextSlide = () => {
     setSlide((prev) => (prev + 1) % images.length);
@@ -212,15 +212,15 @@ export default function Page() {
           zIndex: 1000,
         }}
       >
-        <Link href="/inspiration" style={linkStyle}>
+        <Link href={`${base}/inspiration/`} style={linkStyle}>
           Inspiration
         </Link>
 
-        <Link href="/design-evolution" style={linkStyle}>
+        <Link href={`${base}/design-evolution/`} style={linkStyle}>
           Design Evolution
         </Link>
 
-        <Link href="/reflections" style={linkStyle}>
+        <Link href={`${base}/reflections/`} style={linkStyle}>
           Reflections
         </Link>
       </nav>
