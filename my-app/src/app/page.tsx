@@ -1,110 +1,136 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import styles from "./page.module.css";
 
-const BASE_PATH = "/nextjs-cogs125";
+/**
+ * Replace these entries with your actual images.
+ * `src` should point to files in /public, e.g. "/images/project1.jpg"
+ * `alt` is the accessible description.
+ * `label` appears as a caption inside the placeholder when no image is present.
+ */
+const SLIDES = [
+  { src: "images/Base.png", alt: "Project one", label: "01" },
+  { src: "images/Base_Modified.png", alt: "Project two", label: "02" },
+  { src: "images/Region_Example.png", alt: "Project three", label: "03" },
+  { /*src: "", alt: "Project four", label: "04" */ },
+];
 
-export default function Page() {
-  const images = [
-    `${BASE_PATH}/screenshots/Base.png`,
-    `${BASE_PATH}/screenshots/Base_Modified.png`,
-    `${BASE_PATH}/screenshots/Region_Example.png`,
-  ];
+const INTERVAL_MS = 5000;
 
-  const [slide, setSlide] = useState(0);
+export default function Home() {
+  const [current, setCurrent] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const nextSlide = () => {
-    setSlide((prev) => (prev + 1) % images.length);
-  };
+  const goTo = useCallback(
+    (index: number) => {
+      if (index === current) return;
+      setVisible(false);
+      setTimeout(() => {
+        setCurrent((index + SLIDES.length) % SLIDES.length);
+        setVisible(true);
+      }, 450); // matches slideExitActive transition
+    },
+    [current]
+  );
 
-  const prevSlide = () => {
-    setSlide((prev) => (prev - 1 + images.length) % images.length);
-  };
+  const next = useCallback(() => goTo(current + 1), [current, goTo]);
+  const prev = useCallback(() => goTo(current - 1), [current, goTo]);
+
+  // Auto-advance every 5 s; reset on manual navigation
+  useEffect(() => {
+    timerRef.current = setTimeout(next, INTERVAL_MS);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [current, next]);
+
+  const slide = SLIDES[current];
 
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif" }}>
-      {/* INTRO */}
-      <section
-        style={{
-          height: "20vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <h1 style={{ fontSize: "48px", margin: 0 }}>Evan Asti</h1>
-        <p style={{ fontSize: "24px", margin: 0 }}>
-          COGS 125 Portfolio
-        </p>
-      </section>
+    <main className={styles.page}>
+      {/* ── Header ── */}
+      <header className={styles.header}>
+        <h1 className={styles.name}>Evan Asti</h1>
+        <p className={styles.subtitle}>COGS 125 Portfolio</p>
+      </header>
 
-      {/* SLIDER */}
-      <section
-        style={{
-          height: "80vh",
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-        }}
-      >
-        <button onClick={prevSlide} style={arrowStyle("left")}>
-          ‹
+      {/* ── Gallery ── */}
+      <section className={styles.gallerySection} aria-label="Image gallery">
+        <button
+          className={styles.navBtn}
+          onClick={prev}
+          aria-label="Previous image"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
         </button>
 
-        <button onClick={nextSlide} style={arrowStyle("right")}>
-          ›
-        </button>
+        <div className={styles.galleryTrack}>
+          <div
+            className={styles.slide}
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(-12px)",
+              transition: "opacity 0.55s ease, transform 0.55s ease",
+            }}
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {slide.src ? (
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                className={styles.slideImage}
+                priority={current === 0}
+              />
+            ) : (
+              <div className={styles.slidePlaceholder}>
+                <span>{slide.label}</span>
+                {slide.alt}
+              </div>
+            )}
+          </div>
 
-        <img
-          src={images[slide]}
-          alt={`Slide ${slide + 1}`}
-          style={{
-            maxWidth: "90%",
-            maxHeight: "75vh",
-            objectFit: "contain",
-          }}
-        />
+          {/* Dot indicators */}
+          <div className={styles.dots} aria-hidden="true">
+            {SLIDES.map((_, i) => (
+              <div
+                key={i}
+                className={`${styles.dot} ${i === current ? styles.dotActive : ""}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        <button
+          className={styles.navBtn}
+          onClick={next}
+          aria-label="Next image"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
       </section>
 
-      {/* NAV */}
-      <nav
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          height: "70px",
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          background: "black",
-        }}
-      >
-        <Link href="/inspiration">Inspiration</Link>
-        <Link href="/design-evolution">Design Evolution</Link>
-        <Link href="/reflections">Reflections</Link>
-      </nav>
+      {/* ── Footer ── */}
+      <footer className={styles.footer}>
+        <Link href="/inspiration" className={styles.footerLink}>
+          Inspiration
+        </Link>
+        <Link href="/design-evolution" className={styles.footerLink}>
+          Design Evolution
+        </Link>
+        <Link href="/reflections" className={styles.footerLink}>
+          Reflections
+        </Link>
+      </footer>
     </main>
   );
-}
-
-function arrowStyle(side: "left" | "right"): React.CSSProperties {
-  return {
-    position: "absolute",
-    top: "50%",
-    [side]: "20px",
-    transform: "translateY(-50%)",
-    width: "50px",
-    height: "50px",
-    borderRadius: "50%",
-    border: "none",
-    background: "rgba(0,0,0,0.4)",
-    color: "white",
-    fontSize: "28px",
-    cursor: "pointer",
-  };
 }

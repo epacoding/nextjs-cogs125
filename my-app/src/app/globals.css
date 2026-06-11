@@ -1,18 +1,53 @@
-html, body {
+/* globals.css */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow-x: hidden;
-  background: white;
-  color: black;
-  font-family: system-ui, sans-serif;
 }
 
-* {
-  box-sizing: border-box;
+:root {
+  --color-bg: #0d0d0f;
+  --color-surface: #16161a;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #f0ede8;
+  --color-text-muted: rgba(240, 237, 232, 0.45);
+  --color-accent: #c9a96e;
+  --color-accent-dim: rgba(201, 169, 110, 0.15);
+
+  --font-playfair: var(--font-playfair);
+  --font-dm-sans: var(--font-dm-sans);
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-dm-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
