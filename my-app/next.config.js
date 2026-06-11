@@ -1,10 +1,10 @@
-const repo = "nextjs-cogs125";
-
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
-  output: "export",
-  basePath: `/${repo}`,
-  assetPrefix: `/${repo}/`,
+  output: 'export',
+  basePath: isProd ? '/nextjs-cogs125' : '',
+  assetPrefix: isProd ? '/nextjs-cogs125/' : '',
   images: {
     unoptimized: true,
   },

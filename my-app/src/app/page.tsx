@@ -12,10 +12,9 @@ import styles from "./page.module.css";
  * `label` appears as a caption inside the placeholder when no image is present.
  */
 const SLIDES = [
-  { src: "images/Base.png", alt: "Project one", label: "01" },
-  { src: "images/Base_Modified.png", alt: "Project two", label: "02" },
-  { src: "images/Region_Example.png", alt: "Project three", label: "03" },
-  { /*src: "", alt: "Project four", label: "04" */ },
+  { src: "/images/Base.png", alt: "Project one", label: "01" },
+  { src: "/images/Base_Modified.png", alt: "Project two", label: "02" },
+  { src: "/images/Region_Example.png", alt: "Project three", label: "03" }
 ];
 
 const INTERVAL_MS = 5000;
