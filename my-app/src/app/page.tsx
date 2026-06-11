@@ -9,12 +9,14 @@ export default function Page() {
   {/* Initialize the slide state */}
   const [slide, setSlide] = useState(0);
 
+  const basePath = "/nextjs-cogs125";
+
   const images = [
     "/screenshots/Base.png",
     "/screenshots/Base_Modified.png",
     "/screenshots/Region_Example.png"
   ];
-  
+
   const nextSlide = () => {
     setSlide((prev) => (prev + 1) % images.length);
   };
@@ -147,7 +149,7 @@ export default function Page() {
             }}
           >
             <Image
-              src="/screenshots/Base.png"
+              src={`${basePath}/screenshots/Base.png`}
               alt="Slide 1"
               width={1152}
               height={864}
@@ -166,7 +168,7 @@ export default function Page() {
             }}
           >
             <Image
-              src="/screenshots/Base_Modified.png"
+              src={`${basePath}/screenshots/Base.png`}
               alt="Slide 2"
               width={1152}
               height={864}
@@ -185,7 +187,7 @@ export default function Page() {
             }}
           >
             <Image
-              src="/screenshots/Region_Example.png"
+              src={`${basePath}/screenshots/Region_Example.png`}
               alt="Slide 3"
               width={1152}
               height={864}

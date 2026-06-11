@@ -2,15 +2,12 @@
 
 const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
-  /* config options here */
-  reactStrictMode: true,
+  output: "export",
+  basePath: "/nextjs-cogs125",
+  assetPrefix: "/nextjs-cogs125",
   images: {
     unoptimized: true,
   },
-  assetPrefix: isProd ? '/my-app/' : '',
-  basePath: isProd ? '/my-app' : '',
-  output: 'export',
-  trailingSlash: true
 };
 
-export default nextConfig;
+export default nextConfig
