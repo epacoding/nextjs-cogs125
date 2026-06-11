@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const BASE_PATH = "/nextjs-cogs125";
+
 export default function Page() {
   const images = [
-    "/screenshots/Base.png",
-    "/screenshots/Base_Modified.png",
-    "/screenshots/Region_Example.png",
+    `${BASE_PATH}/screenshots/Base.png`,
+    `${BASE_PATH}/screenshots/Base_Modified.png`,
+    `${BASE_PATH}/screenshots/Region_Example.png`,
   ];
 
   const [slide, setSlide] = useState(0);
@@ -49,17 +51,14 @@ export default function Page() {
           overflow: "hidden",
         }}
       >
-        {/* LEFT BUTTON */}
         <button onClick={prevSlide} style={arrowStyle("left")}>
           ‹
         </button>
 
-        {/* RIGHT BUTTON */}
         <button onClick={nextSlide} style={arrowStyle("right")}>
           ›
         </button>
 
-        {/* CURRENT IMAGE ONLY (IMPORTANT FIX) */}
         <img
           src={images[slide]}
           alt={`Slide ${slide + 1}`}
@@ -67,7 +66,6 @@ export default function Page() {
             maxWidth: "90%",
             maxHeight: "75vh",
             objectFit: "contain",
-            transition: "opacity 0.3s ease",
           }}
         />
       </section>
