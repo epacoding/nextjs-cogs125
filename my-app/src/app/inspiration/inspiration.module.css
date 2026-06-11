@@ -1,0 +1,141 @@
+.page {
+  background: #050505;
+  color: white;
+  min-height: 100vh;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+  padding: 180px 10%;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  max-width: 800px;
+  margin: auto;
+  color: #a1a1aa;
+  line-height: 1.8;
+}
+
+/* ---------- SECTIONS ---------- */
+
+.section {
+  width: 85%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 0;
+}
+
+.section h2 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* ---------- INFLUENCES ---------- */
+
+.influenceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.influenceCard {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.influenceCard:hover .image {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 2rem;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(0,0,0,.9)
+    );
+}
+
+/* ---------- INFO CARDS ---------- */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 2rem;
+}
+
+.infoCard {
+  background: #111;
+  padding: 2rem;
+  border-radius: 24px;
+  transition: transform .3s ease;
+}
+
+.infoCard:hover {
+  transform: translateY(-8px);
+}
+
+/* ---------- TIMELINE ---------- */
+
+.timeline {
+  border-left: 2px solid #333;
+  padding-left: 3rem;
+}
+
+.timelineItem {
+  margin-bottom: 5rem;
+  position: relative;
+}
+
+.timelineItem::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+
+  position: absolute;
+  left: -57px;
+  top: 6px;
+
+  border-radius: 50%;
+  background: white;
+}
+
+/* ---------- TAKEAWAYS ---------- */
+
+.takeaways {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem;
+}
+
+.takeawayCard {
+  background: #111;
+  border-radius: 24px;
+  padding: 2rem;
+}
+
+.takeawayCard span {
+  display: block;
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}

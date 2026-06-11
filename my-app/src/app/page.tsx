@@ -9,13 +9,19 @@ export default function Page() {
   {/* Initialize the slide state */}
   const [slide, setSlide] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSlide((prev) => (prev + 1) % 3);
-    }, 5000);
+  const images = [
+    "/screenshots/Base.png",
+    "/screenshots/Base_Modified.png",
+    "/screenshots/Region_Example.png"
+  ];
+  
+  const nextSlide = () => {
+    setSlide((prev) => (prev + 1) % images.length);
+  };
 
-    return () => clearInterval(interval);
-  }, []);
+  const prevSlide = () => {
+    setSlide((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   const linkStyle = {
     textDecoration: "none",
@@ -51,6 +57,49 @@ export default function Page() {
           position: "relative",
         }}
       >
+          {/* Left Arrow */}
+        <button
+          onClick={prevSlide}
+          style={{
+            position: "absolute",
+            left: "20px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 20,
+            fontSize: "30px",
+            background: "rgba(0,0,0,0.4)",
+            color: "white",
+            border: "none",
+            borderRadius: "50%",
+            width: "50px",
+            height: "50px",
+            cursor: "pointer",
+          }}
+        >
+          ‹
+        </button>
+
+        {/* Right Arrow */}
+        <button
+          onClick={nextSlide}
+          style={{
+            position: "absolute",
+            right: "20px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 20,
+            fontSize: "30px",
+            background: "rgba(0,0,0,0.4)",
+            color: "white",
+            border: "none",
+            borderRadius: "50%",
+            width: "50px",
+            height: "50px",
+            cursor: "pointer",
+          }}
+        >
+          ›
+        </button>
         <div
           style={{
             position: "absolute",
