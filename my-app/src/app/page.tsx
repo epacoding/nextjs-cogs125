@@ -125,7 +125,7 @@ export default function Page() {
         ></div>
         <motion.div
           animate={{
-            x: `-${slide * 100}vw`,
+            x: `-${slide * 100}%`,
             y: "-60px"
           }}
           transition={{
@@ -149,7 +149,7 @@ export default function Page() {
             }}
           >
             <Image
-              src={`${base}/screenshots/Base.png`}
+              src="/screenshots/Base.png"
               alt="Slide 1"
               width={1152}
               height={864}
@@ -168,7 +168,7 @@ export default function Page() {
             }}
           >
             <Image
-              src={`${base}/screenshots/Base_Modified.png`}
+              src="/screenshots/Base_Modified.png"
               alt="Slide 2"
               width={1152}
               height={864}
@@ -187,7 +187,7 @@ export default function Page() {
             }}
           >
             <Image
-              src={`${base}/screenshots/Region_Example.png`}
+              src="/screenshots/Region_Example.png"
               alt="Slide 3"
               width={1152}
               height={864}
@@ -212,15 +212,15 @@ export default function Page() {
           zIndex: 1000,
         }}
       >
-        <Link href={`${base}/inspiration/`} style={linkStyle}>
+        <Link href="/inspiration" style={linkStyle}>
           Inspiration
         </Link>
 
-        <Link href={`${base}/design-evolution/`} style={linkStyle}>
+        <Link href="/design-evolution" style={linkStyle}>
           Design Evolution
         </Link>
 
-        <Link href={`${base}/reflections/`} style={linkStyle}>
+        <Link href="/reflections" style={linkStyle}>
           Reflections
         </Link>
       </nav>
