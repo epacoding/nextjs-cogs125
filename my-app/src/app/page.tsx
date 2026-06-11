@@ -1,21 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Page() {
-  {/* Initialize the slide state */}
   const [slide, setSlide] = useState(0);
 
-  const base = process.env.NODE_ENV === "production" ? "/nextjs-cogs125" : "";
-
   const images = [
-  `${base}/screenshots/Base.png`,
-  `${base}/screenshots/Base_Modified.png`,
-  `${base}/screenshots/Region_Example.png`
-];
+    "/screenshots/Base.png",
+    "/screenshots/Base_Modified.png",
+    "/screenshots/Region_Example.png",
+  ];
 
   const nextSlide = () => {
     setSlide((prev) => (prev + 1) % images.length);
@@ -52,6 +49,7 @@ export default function Page() {
         </p>
       </section>
 
+      {/* Slider */}
       <section
         style={{
           height: "100vh",
@@ -59,7 +57,7 @@ export default function Page() {
           position: "relative",
         }}
       >
-          {/* Left Arrow */}
+        {/* Left Arrow */}
         <button
           onClick={prevSlide}
           style={{
@@ -102,31 +100,10 @@ export default function Page() {
         >
           ›
         </button>
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "80px",
-            zIndex: 2,
-            pointerEvents: "none",
-            background: "linear-gradient(to bottom, white, transparent)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 10,
-            textAlign: "center",
-          }}
-        ></div>
+
         <motion.div
           animate={{
             x: `-${slide * 100}%`,
-            y: "-60px"
           }}
           transition={{
             duration: 0.8,
@@ -137,66 +114,32 @@ export default function Page() {
             height: "100%",
           }}
         >
-        {/* Slide 1 */}
-          <div
-            style={{
-              width: "100vw",
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src="/screenshots/Base.png"
-              alt="Slide 1"
-              width={1152}
-              height={864}
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-          {/* Slide 2 */}
-          <div
-            style={{
-              width: "100vw",
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src="/screenshots/Base_Modified.png"
-              alt="Slide 2"
-              width={1152}
-              height={864}
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-          {/* Slide 3 */}
-          <div
-            style={{
-              width: "100vw",
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src="/screenshots/Region_Example.png"
-              alt="Slide 3"
-              width={1152}
-              height={864}
-              style={{ objectFit: "contain" }}
-            />
-          </div>
+          {images.map((src, i) => (
+            <div
+              key={i}
+              style={{
+                width: "100vw",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexShrink: 0,
+              }}
+            >
+              <Image
+                src={src}
+                alt={`Slide ${i + 1}`}
+                width={1152}
+                height={864}
+                style={{ objectFit: "contain" }}
+                priority={i === 0}
+              />
+            </div>
+          ))}
         </motion.div>
       </section>
-      {/* NAVIGATION (now page-based) */}
+
+      {/* NAVIGATION */}
       <nav
         style={{
           position: "fixed",
