@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Page() {
@@ -47,38 +46,30 @@ export default function Page() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          overflow: "hidden",
         }}
       >
-        {/* LEFT */}
-        <button
-          onClick={prevSlide}
-          style={arrowStyle("left")}
-        >
+        {/* LEFT BUTTON */}
+        <button onClick={prevSlide} style={arrowStyle("left")}>
           ‹
         </button>
 
-        {/* RIGHT */}
-        <button
-          onClick={nextSlide}
-          style={arrowStyle("right")}
-        >
+        {/* RIGHT BUTTON */}
+        <button onClick={nextSlide} style={arrowStyle("right")}>
           ›
         </button>
 
-        {/* IMAGE (STATIC SAFE) */}
-        <div style={{ textAlign: "center" }}>
-          <Image
-            src={images[slide]}
-            alt={`Slide ${slide + 1}`}
-            width={1000}
-            height={700}
-            style={{
-              maxWidth: "90vw",
-              height: "auto",
-              objectFit: "contain",
-            }}
-          />
-        </div>
+        {/* CURRENT IMAGE ONLY (IMPORTANT FIX) */}
+        <img
+          src={images[slide]}
+          alt={`Slide ${slide + 1}`}
+          style={{
+            maxWidth: "90%",
+            maxHeight: "75vh",
+            objectFit: "contain",
+            transition: "opacity 0.3s ease",
+          }}
+        />
       </section>
 
       {/* NAV */}
