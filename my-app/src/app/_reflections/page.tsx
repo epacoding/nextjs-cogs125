@@ -1,3 +1,6 @@
+"use client";
+export const dynamic = "force-static";
+
 export default function Page(){
     return (
         <main style={{ padding: "100px", fontFamily: "system-ui" }}>

@@ -4,10 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "predeploy": "npm run build",
-    "deploy": "npm run build && gh-pages -d out"
+    "deploy": "rm -rf out && next build && gh-pages -d out"
   },
   "name": "my-app",
   "version": "0.1.0",

@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-static";
 
 import styles from "./inspiration.module.css";
 import { motion } from "framer-motion";
@@ -25,9 +26,11 @@ export default function Page() {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          This project was inspired by a collection of visual references,
-          interaction patterns, and design philosophies that helped shape
-          the final experience.
+          My name is Evan and I play Overwatch semi-professionally. I am involved both with
+          UCSD and an individual team, and I believe the Overwatch Professional scene needs
+          more eyes drawn to it. My portfolio is concentrated on redesigning the home screen
+          to cater to a more casual audience to take interest in OW Esports, aligning with
+          this aforementioned objective.
         </motion.p>
       </section>
 

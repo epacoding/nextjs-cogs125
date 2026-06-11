@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-static";
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -8,8 +9,6 @@ import Link from "next/link";
 export default function Page() {
   {/* Initialize the slide state */}
   const [slide, setSlide] = useState(0);
-
-  const basePath = "/nextjs-cogs125";
 
   const images = [
     "/screenshots/Base.png",
@@ -149,7 +148,7 @@ export default function Page() {
             }}
           >
             <Image
-              src={`${basePath}/screenshots/Base.png`}
+              src={"/screenshots/Base.png"}
               alt="Slide 1"
               width={1152}
               height={864}
@@ -168,7 +167,7 @@ export default function Page() {
             }}
           >
             <Image
-              src={`${basePath}/screenshots/Base.png`}
+              src={"/screenshots/Base_Modified.png"}
               alt="Slide 2"
               width={1152}
               height={864}
@@ -187,7 +186,7 @@ export default function Page() {
             }}
           >
             <Image
-              src={`${basePath}/screenshots/Region_Example.png`}
+              src={"/screenshots/Region_Example.png"}
               alt="Slide 3"
               width={1152}
               height={864}
