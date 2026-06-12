@@ -8,6 +8,13 @@
   padding: 0;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background: #050505;
+  color: white;
+}
+
 :root {
   --color-bg: #0d0d0f;
   --color-surface: #16161a;

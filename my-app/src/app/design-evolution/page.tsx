@@ -8,6 +8,8 @@ import { useScroll, useTransform } from "framer-motion";
 
 export default function Page() {
 
+  const basePath = process.env.NODE_ENV === 'production' ? "/nextjs-cogs125" : "";
+
   const stickyRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: stickyRef, offset: ["start start", "end end"] });
   const imageY = useTransform(scrollYProgress, [0, 1], ["0vh", "-200vh"]);
@@ -73,8 +75,7 @@ export default function Page() {
       <section className={styles.checkpoint}>
         <p className={styles.checkpointLabel}>Checkpoint — Initial Wireframe</p>
         <div className={styles.checkpointImage}>
-          {/* Replace src with your checkpoint image */}
-          <Image src="/images/Base.png" alt="Checkpoint 1" fill style={{ objectFit: "contain" }} />
+          <Image src={`${basePath}/images/Base.png`} alt="Checkpoint 1" fill style={{ objectFit: "contain" }} />
         </div>
       </section>
 
@@ -98,13 +99,13 @@ export default function Page() {
         <p className={styles.checkpointLabel}>Checkpoint — Color & Type Pass</p>
         <div style={{ display: "flex", gap: "1.5rem", width: "100%" }}>
           <div className={styles.checkpointImage} style={{ flex: 1 }}>
-            <Image src="/images/Base_Modified.png" alt="Checkpoint 2a" fill style={{ objectFit: "contain" }} />
+            <Image src={`${basePath}/images/Base_Modified.png`} alt="Checkpoint 2a" fill style={{ objectFit: "contain" }} />
           </div>
           <div className={styles.flowArrow} style={{ marginTop: "240px" }}>
             →
           </div>
           <div className={styles.checkpointImage} style={{ flex: 1 }}>
-            <Image src="/images/Region_Example.png" alt="Checkpoint 2b" fill style={{ objectFit: "contain" }} />
+            <Image src={`${basePath}/images/Region_Example.png`} alt="Checkpoint 2b" fill style={{ objectFit: "contain" }} />
           </div>
         </div>
       </section>
@@ -112,24 +113,16 @@ export default function Page() {
       {/* ── PROBLEM INTO RESOLUTION FLOW ── */}
       <section className={styles.section}>
         <h2>Feedback & Redesign</h2>
-        {/* --- User Response Information --- */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           style={{ color: "#a1a1aa", lineHeight: 1.8, marginTop:"-40px"}}
-
         >
           After sharing the initial UI with 10 overwatch peers, 5 casual, 5 interested in Esports, these were the main problems I identified.
         </motion.p>
-        {/* Need to iterate through each problem and resolution, hence item features a problem and resolution field from const var */}
-        {/* Reference the flow css module for styling w/ motion fade */}
-        {/* Line 137: Tighter spacing particularly on first problem, resolution, since there was deadspace before between sections */}
-        {/* Line 140: styles.flowBox for typography location, styles.flowProblem for problem text typography */}
-        {/* Line 146: styles.flowBox for typography location, styles.flowResolution for resolution text typography */}
         <div className={styles.flowMap}>
           {flow.map((item, i) => (
-            
             <motion.div
               key={i}
               className={styles.flowRow}
@@ -155,10 +148,8 @@ export default function Page() {
       {/* ── CHECKPOINT IMAGE 3 ── */}
       <section ref={stickyRef} style={{ position: "relative", height: "300vh" }}>
   
-        {/* Sticky container */}
         <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", display: "flex" }}>
           
-          {/* Left: sticky takeaways */}
           <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 5%" }}>
             <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "3rem", marginBottom: "3rem" }}>Key Takeaways</h2>
             {[
@@ -173,10 +164,9 @@ export default function Page() {
             ))}
           </div>
 
-          {/* Right: scrolling images */}
           <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
             <motion.div style={{ y: imageY, position: "absolute", top: 0, width: "100%" }}>
-              {["/images/NA_Final_Design.png", "/images/EU_Final_Design.png", "/images/Match_Schedule.png"].map((src, i) => (
+              {[`${basePath}/images/NA_Final_Design.png`, `${basePath}/images/EU_Final_Design.png`, `${basePath}/images/Match_Schedule.png`].map((src, i) => (
                 <div key={i} style={{ position: "relative", height: "100vh", width: "100%" }}>
                   <Image src={src} alt={`Final design ${i + 1}`} fill style={{ objectFit: "contain" }} />
                 </div>

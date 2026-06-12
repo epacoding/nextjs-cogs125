@@ -6,6 +6,8 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Page() {
+  const hyperlink = process.env.NODE_ENV === 'production' ? "/nextjs-cogs125" : "";
+
   const [slide, setSlide] = useState(0);
 
   const [visible, setVisible] = useState(true);
@@ -79,7 +81,7 @@ export default function Page() {
             top: "100px",
             left: "50%",
             transform: "translateX(-50%)",
-            opacity: visible ? 1 : 0, // title fade in
+            opacity: visible ? 1 : 0,
             transition: "opacity 1s ease-in",
             zIndex: 10,
             textAlign: "center",
@@ -125,7 +127,7 @@ export default function Page() {
             }}
           >
             <Image
-              src="/images/Base.png"
+              src={`${hyperlink}/images/Base.png`}
               alt="Slide 1"
               width={1000}
               height={700}
@@ -147,7 +149,7 @@ export default function Page() {
             }}
           >
             <Image
-              src="/images/Base_Modified.png"
+              src={`${hyperlink}/images/Base_Modified.png`}
               alt="Slide 2"
               width={1000}
               height={700}
@@ -167,13 +169,14 @@ export default function Page() {
             }}
           >
             <Image
-              src="/images/Region_Example.png"
+              src={`${hyperlink}/images/Region_Example.png`}
               alt="Slide 3"
               width={1000}
               height={700}
               style={{ objectFit: "contain" }}
             />
           </div>
+
           {/* Slide 4 */}
           <div
             style={{
@@ -186,7 +189,7 @@ export default function Page() {
             }}
           >
             <Image
-              src="/images/NA_Final_Design.png"
+              src={`${hyperlink}/images/NA_Final_Design.png`}
               alt="Slide 4"
               width={1000}
               height={700}
@@ -202,8 +205,8 @@ export default function Page() {
           width: "100vw",
           height: "80px",
           display: "flex",
-          flexDirection: "row",       // ensure horizontal
-          flexWrap: "nowrap",         // prevent stacking
+          flexDirection: "row",
+          flexWrap: "nowrap",
           alignItems: "center",
           justifyContent: "space-evenly",
           position: "relative",
@@ -212,15 +215,15 @@ export default function Page() {
           marginTop: "-100px"
         }}
       >
-        <a href="/inspiration" style={linkStyle}>
+        <a href={`${hyperlink}/inspiration`} style={linkStyle}>
           Inspiration
         </a>
 
-        <a href="/design-evolution" style={linkStyle}>
+        <a href={`${hyperlink}/design-evolution`} style={linkStyle}>
           Design Evolution
         </a>
 
-        <a href="/reflections" style={linkStyle}>
+        <a href={`${hyperlink}/reflections`} style={linkStyle}>
           Reflections
         </a>
       </footer>

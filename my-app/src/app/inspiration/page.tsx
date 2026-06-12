@@ -12,6 +12,8 @@ import Link from "next/link";
 
 export default function Page() {
 
+  const basePath = process.env.NODE_ENV === 'production' ? "/nextjs-cogs125" : "";
+
   return (
 
     <main className={styles.page}>
@@ -55,35 +57,25 @@ export default function Page() {
         </div>
         {/* Right: two stacked images */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-          
-
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{ position: "relative", height: "800px", borderRadius: "16px", overflow: "hidden" }}
           >
-            <Image src="/images/cachedImage.png" alt="" fill style={{ objectFit: "cover" }} />
+            <Image src={`${basePath}/images/cachedImage.png`} alt="" fill style={{ objectFit: "cover" }} />
           </motion.div>
         </div>
       </div>
     </section>
 
-
-
       {/* My influences, talking about 3 pieces of content I earlier wanted to include */}
-
-
 
       <section className={styles.section}>
 
         <h2>Media that has Influenced My Design Ambitions</h2>
 
-
-
         <div className={styles.influenceGrid}>
-
-
 
           <motion.div
 
@@ -100,14 +92,12 @@ export default function Page() {
           >
 
             <Image
-              src="/images/tweet.png"
+              src={`${basePath}/images/tweet.png`}
               alt="tweet"
               fill
               className={styles.image}
               style={{ objectFit: "contain" }}
             />
-
-
 
             <div className={styles.overlay}>
 
@@ -119,8 +109,6 @@ export default function Page() {
 
           </motion.div>
 
-
-
           <motion.div
 
             whileHover={{
@@ -136,14 +124,12 @@ export default function Page() {
           >
 
             <Image
-              src="/images/OWTV.png"
+              src={`${basePath}/images/OWTV.png`}
               alt="OWTV"
               fill
               className={styles.image}
               style={{ objectFit: "contain" }}
             />
-
-
 
             <div className={styles.overlay}>
 
@@ -154,8 +140,6 @@ export default function Page() {
             </div>
 
           </motion.div>
-
-
 
           <motion.div
 
@@ -173,14 +157,12 @@ export default function Page() {
 
             <div style={{ position: "absolute", inset: "75px", borderRadius: "0px", overflow: "hidden" }}>
               <Image
-                src="/images/IMG_9937.jpg"
+                src={`${basePath}/images/IMG_9937.jpg`}
                 alt="Medal"
                 fill
                 style={{ objectFit: "contain" }}
               />
             </div>
-
-
 
             <div className={styles.overlay}>
 
@@ -192,13 +174,11 @@ export default function Page() {
 
           </motion.div>
 
-
-
         </div>
 
       </section>
+
     </main>
 
   );
-
 }

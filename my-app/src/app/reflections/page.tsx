@@ -12,6 +12,8 @@ import Link from "next/link";
 
 export default function Page() {
 
+  const basePath = process.env.NODE_ENV === 'production' ? "/nextjs-cogs125" : "";
+
   return (
 
     <main className={styles.page}>
@@ -62,7 +64,7 @@ export default function Page() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 style={{ position: "relative", height: "800px", borderRadius: "16px", overflow: "hidden" }}
             >
-                <Image src="/images/user_analysis_code.png" alt="" fill style={{ objectFit: "contain", marginTop: "50px" }} />
+                <Image src={`${basePath}/images/user_analysis_code.png`} alt="" fill style={{ objectFit: "contain", marginTop: "50px" }} />
             </motion.div>
             <motion.div
                 initial={{ opacity: 0, x: 60 }}
@@ -70,7 +72,7 @@ export default function Page() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 style={{ position: "relative", height: "800px", borderRadius: "16px", overflow: "hidden" }}
             >
-                <Image src="/images/chunking_errors.png" alt="" fill style={{ objectFit: "contain"}} />
+                <Image src={`${basePath}/images/chunking_errors.png`} alt="" fill style={{ objectFit: "contain"}} />
             </motion.div>
             </div>
         </div>
