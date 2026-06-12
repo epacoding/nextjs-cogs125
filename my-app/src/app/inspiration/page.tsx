@@ -63,7 +63,7 @@ export default function Page() {
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{ position: "relative", height: "800px", borderRadius: "16px", overflow: "hidden" }}
           >
-            <Image src={`${basePath}/images/cachedImage.png`} alt="" fill style={{ objectFit: "cover" }} />
+            <Image src={`${basePath}/images/cachedImage.webp`} alt="" fill style={{ objectFit: "cover" }} />
           </motion.div>
         </div>
       </div>
