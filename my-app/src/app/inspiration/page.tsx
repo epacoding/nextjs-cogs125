@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function Page() {
 
-  const basePath = process.env.NODE_ENV === 'production' ? "/nextjs-cogs125/inspiration" : "";
+  const basePath = process.env.NODE_ENV === 'production' ? "/nextjs-cogs125/" : "";
 
   return (
 
