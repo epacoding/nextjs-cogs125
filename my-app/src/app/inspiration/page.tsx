@@ -157,7 +157,7 @@ export default function Page() {
 
             <div style={{ position: "absolute", inset: "75px", borderRadius: "0px", overflow: "hidden" }}>
               <Image
-                src={`${basePath}/images/IMG_9937.jpg`}
+                src={`${basePath}/images/IMG_9937.png`}
                 alt="Medal"
                 fill
                 style={{ objectFit: "contain" }}
