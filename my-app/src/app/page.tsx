@@ -107,6 +107,7 @@ export default function Page() {
 
         {/* slider track */}
         <motion.div
+          initial={false}
           animate={{ x: `-${slide * 100}vw` }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           style={{

@@ -8,7 +8,7 @@ import { useScroll, useTransform } from "framer-motion";
 
 export default function Page() {
 
-  const basePath = process.env.NODE_ENV === 'production' ? "/nextjs-cogs125" : "";
+  const basePath = process.env.NODE_ENV === 'production' ? "/nextjs-cogs125/design-evolution" : "";
 
   const stickyRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: stickyRef, offset: ["start start", "end end"] });
