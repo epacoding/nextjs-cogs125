@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
-import { playfair, dmSans } from "./fonts";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Evan Asti — COGS 125 Portfolio",
-  description: "A design portfolio for COGS 125.",
+export const metadata = {
+  title: "Evan Asti Portfolio",
+  description: "COGS 125 Portfolio",
 };
 
 export default function RootLayout({
@@ -13,8 +11,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
+    <html lang="en">
+      <body style={{ margin: 0, padding: 0 }}>
+        {children}
+      </body>
     </html>
   );
 }

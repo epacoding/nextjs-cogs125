@@ -1,9 +1,5 @@
 "use client";
 
-export const dynamic = "force-static";
-
-
-
 import styles from "./inspiration.module.css";
 
 import { motion } from "framer-motion";
@@ -27,52 +23,61 @@ export default function Page() {
 
 
       <section className={styles.hero}>
+      `<div style={{ display: "flex", alignItems: "flex-start", gap: "4rem" }}>
+        {/* Left: text */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <motion.div
+            style={{ flex: 1, textAlign: "left", fontSize: "24px" }}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1>Inspiration</h1>
+            <p>
+              My name is Evan and I play Overwatch semi-professionally. I am involved both with
+              UCSD and an individual team, and I believe the Overwatch Professional scene needs
+              more eyes drawn to it. My portfolio is concentrated on redesigning the home screen
+              to cater to a more casual audience to take interest in OW Esports, aligning with
+              this aforementioned objective.
+            </p>
+          </motion.div>
 
-        <motion.h1
+          <motion.div
+            style={{ flex: 1, textAlign: "left", fontSize: "24px" }}
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <p> 
+              Image: Myself competing at a tournament. I have been playing for three years, and both teams I play for currently have strong media prescences.
+            </p>
+          </motion.div>
+        </div>
+        {/* Right: two stacked images */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          
 
-          initial={{ opacity: 0, x: -500, y: -50 }}
-
-          whileInView={{ opacity: 1, y: -100 }}
-
-          transition={{ duration: 0.8 }}
-
-        >
-
-          Inspiration
-
-        </motion.h1>
-
-
-
-        <motion.p
-
-          initial={{ opacity: 0 }}
-
-          whileInView={{ opacity: 1 }}
-
-          transition={{ delay: 0.3 }}
-
-        >
-
-          My name is Evan and I play Overwatch semi-professionally. I am involved both with
-          UCSD and an individual team, and I believe the Overwatch Professional scene needs
-          more eyes drawn to it. My portfolio is concentrated on redesigning the home screen
-          to cater to a more casual audience to take interest in OW Esports, aligning with
-          this aforementioned objective.
-
-        </motion.p>
-
-      </section>
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            style={{ position: "relative", height: "800px", borderRadius: "16px", overflow: "hidden" }}
+          >
+            <Image src="/images/cachedImage.png" alt="" fill style={{ objectFit: "cover" }} />
+          </motion.div>
+        </div>
+      </div>
+    </section>
 
 
 
-      {/* FEATURED INFLUENCES */}
+      {/* My influences, talking about 3 pieces of content I earlier wanted to include */}
 
 
 
       <section className={styles.section}>
 
-        <h2>Featured Influences</h2>
+        <h2>Media that has Influenced My Design Ambitions</h2>
 
 
 
@@ -95,24 +100,20 @@ export default function Page() {
           >
 
             <Image
-
-              src="/images/inspo1.jpg"
-
-              alt=""
-
+              src="/images/tweet.png"
+              alt="tweet"
               fill
-
               className={styles.image}
-
+              style={{ objectFit: "contain" }}
             />
 
 
 
             <div className={styles.overlay}>
 
-              <h3>Influence One</h3>
+              <h3>Community Voice</h3>
 
-              <p>Short description.</p>
+              <p>Several influential community members have spoken out about the lack of presentation for OW Esports in any facet within the actual game client.</p>
 
             </div>
 
@@ -135,24 +136,20 @@ export default function Page() {
           >
 
             <Image
-
-              src="/images/inspo2.jpg"
-
-              alt=""
-
+              src="/images/OWTV.png"
+              alt="OWTV"
               fill
-
               className={styles.image}
-
+              style={{ objectFit: "contain" }}
             />
 
 
 
             <div className={styles.overlay}>
 
-              <h3>Influence Two</h3>
+              <h3>Community Action</h3>
 
-              <p>Short description.</p>
+              <p>Third party websites have been developed to platform OW Esports content, a great starting point to integrate something inside the game.</p>
 
             </div>
 
@@ -166,7 +163,7 @@ export default function Page() {
 
               y: -10,
 
-              scale: 1.02
+              scale: 1.05
 
             }}
 
@@ -174,25 +171,22 @@ export default function Page() {
 
           >
 
-            <Image
-
-              src="/images/inspo3.jpg"
-
-              alt=""
-
-              fill
-
-              className={styles.image}
-
-            />
+            <div style={{ position: "absolute", inset: "75px", borderRadius: "0px", overflow: "hidden" }}>
+              <Image
+                src="/images/IMG_9937.jpg"
+                alt="Medal"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
 
 
 
             <div className={styles.overlay}>
 
-              <h3>Influence Three</h3>
+              <h3>Personal Competition</h3>
 
-              <p>Short description.</p>
+              <p>From my own experience in tournaments, it's incredibly thrilling to have people watch me compete, and I would hope it could be an experience more people obtain.</p>
 
             </div>
 
@@ -203,187 +197,6 @@ export default function Page() {
         </div>
 
       </section>
-
-
-
-      {/* VISUAL INSPIRATION */}
-
-
-
-      <section className={styles.section}>
-
-        <h2>Visual Inspiration</h2>
-
-
-
-        <div className={styles.cardGrid}>
-
-
-
-          <div className={styles.infoCard}>
-
-            <h3>Color Palette</h3>
-
-            <p>Explain your palette here.</p>
-
-          </div>
-
-
-
-          <div className={styles.infoCard}>
-
-            <h3>Typography</h3>
-
-            <p>Explain your font choices.</p>
-
-          </div>
-
-
-
-          <div className={styles.infoCard}>
-
-            <h3>Layout Ideas</h3>
-
-            <p>Describe layout references.</p>
-
-          </div>
-
-
-
-          <div className={styles.infoCard}>
-
-            <h3>Interactions</h3>
-
-            <p>Describe hover and animation ideas.</p>
-
-          </div>
-
-
-
-        </div>
-
-      </section>
-
-
-
-      {/* RESEARCH */}
-
-
-
-      <section className={styles.section}>
-
-        <h2>Research & Discovery</h2>
-
-
-
-        <div className={styles.timeline}>
-
-
-
-          <div className={styles.timelineItem}>
-
-            <h3>Problem</h3>
-
-            <p>What problem were you solving?</p>
-
-          </div>
-
-
-
-          <div className={styles.timelineItem}>
-
-            <h3>Audience</h3>
-
-            <p>Who was the audience?</p>
-
-          </div>
-
-
-
-          <div className={styles.timelineItem}>
-
-            <h3>Constraints</h3>
-
-            <p>What limitations existed?</p>
-
-          </div>
-
-
-
-        </div>
-
-      </section>
-
-
-
-      {/* TAKEAWAYS */}
-
-
-
-      <section className={styles.section}>
-
-        <h2>Key Takeaways</h2>
-
-
-
-        <div className={styles.takeaways}>
-
-
-
-          <motion.div
-
-            whileHover={{ y: -8 }}
-
-            className={styles.takeawayCard}
-
-          >
-
-            <span>01</span>
-
-            <p>Your first takeaway.</p>
-
-          </motion.div>
-
-
-
-          <motion.div
-
-            whileHover={{ y: -8 }}
-
-            className={styles.takeawayCard}
-
-          >
-
-            <span>02</span>
-
-            <p>Your second takeaway.</p>
-
-          </motion.div>
-
-
-
-          <motion.div
-
-            whileHover={{ y: -8 }}
-
-            className={styles.takeawayCard}
-
-          >
-
-            <span>03</span>
-
-            <p>Your third takeaway.</p>
-
-          </motion.div>
-
-
-
-        </div>
-
-      </section>
-
-
-
     </main>
 
   );
